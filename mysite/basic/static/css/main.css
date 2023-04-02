@@ -1,0 +1,56 @@
+body{
+  background-color:   #E4E9F7 !important;
+
+}
+
+.count_group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.charts-group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group_header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.last_bars_header{
+  display: block;
+float: left;
+width:100%;
+
+}
+.last_bars_headers #first{
+  display: inline;
+  float: left;
+  text-align:center;
+  width:40%;
+  margin-left: 200px;
+}
+.last_bars_headers #second{
+  display: inline;
+  float: left;
+  text-align:center;
+  width:40%;
+  margin-left: 20px;
+
+}
+#bar6{
+  margin-left: 120px;
+}
+.bars{
+  margin-top: 100px;
+}
+
+.table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:200px;
+}

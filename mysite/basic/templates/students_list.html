@@ -1,0 +1,67 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block css %}
+<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+{% endblock css%}
+
+{% block content %}
+<section class="home">
+  <div class="text">Students List</div>
+
+ <!-- Data displayed in the table -->
+<div class="row container table">
+
+    <div class="col-11">
+        <table id="table" class="display" style = "width:100%">
+            <thead>
+                <tr>
+                    {% for col in df.columns %}
+                      <td>
+                        {{col}}
+                      </td>
+                    {% endfor %}
+
+                   </tr>
+
+            </thead>
+            <tbody>
+
+
+ {% for index, row in df.iterrows %}
+                <tr>
+                  {% for cell in row %}
+
+                    <td>
+
+                      {{cell}}
+                    </td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+
+
+            </tbody>
+
+
+        </table>
+
+</div>
+</div>
+</section>
+
+
+<!-- script for the table  -->
+<script>
+  $(document).ready(function() {
+      $('#table').DataTable();
+  } );
+
+
+
+    </script>
+
+{% endblock %}

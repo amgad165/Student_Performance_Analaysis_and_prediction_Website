@@ -1,0 +1,600 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{%  static 'css/number.css'  %}">
+
+{% endblock css%}
+
+{% block content %}
+<section class="home">
+    <div class="text">Analytics</div>
+    <div class="container">
+
+
+          <div class="count_group">
+
+            <div class="counter col_fourth ">
+              <i class="fa fa-group fa-2x"></i>
+              <h2 >{{students_info.0}}</h2>
+               <p class="count-text ">Total Students Counts</p>
+            </div>
+            <div class="counter col_fourth ">
+              <i class="fa fa-male fa-2x"></i>
+              <h2 >{{students_info.3}}</h2>
+              <p class="count-text ">Males Counts</p>
+            </div>
+            <div class="counter col_fourth ">
+              <i class="fa fa-female fa-2x"></i>
+              <h2 >{{students_info.4}}</h2>
+              <p class="count-text ">Females Counts</p>
+            </div>
+    </div>
+
+
+            <div style="margin-left:400px"  id="pie0" class="col-4" >
+
+              </div>
+        </div>
+
+<div class="group_header">
+  <h2>Male vs Female Analytics</h2>
+</div>
+
+
+  <div style="margin-top:40px" class="container-fluid charts-group">
+
+
+
+    <div   id="pie1" >
+
+      </div>
+
+      <div  id="pie2" >
+
+        </div>
+  </div>
+
+  <div style="margin-bottom:10px;" class="container-fluid charts-group">
+    <div  id="bar1" >
+
+      </div>
+      <div  id="bar2" >
+
+        </div>
+        <div  id="bar3" >
+
+          </div>
+          <div  id="bar4" >
+
+            </div>
+  </div>
+
+
+
+  <div  class="container-fluid charts-group bars">
+    <div  id="bar5" >
+
+      </div>
+
+      <div  id="bar6" >
+
+        </div>
+  </div>
+
+
+</section>
+
+<!-- pie0 -->
+<script>
+
+ var options = {
+   colors : ['#8FBC8F','#FF0000'],
+
+
+   title: {
+    text: "Students Pass/Fail",
+    align: 'left',
+    margin :10,
+    offsetX: 55,
+    offsetY: 0,
+    floating: false,
+    style: {
+      fontSize:  '14px',
+      fontWeight:  'bold',
+      color:  '#263238'
+    },
+},
+           series: [{{students_info.1}}, {{students_info.2}}],
+           chart: {
+           width: 380,
+           type: 'pie',
+
+         },
+         plotOptions: {
+
+       pie: {
+         customScale: 0.9
+       }
+     }
+         ,
+         labels: ['Total Passed', 'Total Failed',],
+         responsive: [{
+           breakpoint: 480,
+           options: {
+             chart: {
+               width: 200
+             },
+
+           }
+         }]
+         };
+
+         var chart = new ApexCharts(document.querySelector("#pie0"), options);
+         chart.render();
+ </script>
+
+<!-- Pie chart 1 -->
+<script>
+
+ var options = {
+   title: {
+    text: "Male Pass/Fail",
+    align: 'left',
+    margin :10,
+    offsetX: 55,
+    offsetY: 0,
+    floating: false,
+    style: {
+      fontSize:  '14px',
+      fontWeight:  'bold',
+      color:  '#263238'
+    },
+},
+           series: [{{male_data.0}}, {{male_data.1}}],
+           chart: {
+           width: 380,
+           type: 'pie',
+
+         },
+         plotOptions: {
+
+       pie: {
+         customScale: 0.9
+       }
+     }
+         ,
+         labels: ['Total Passed', 'Total Failed',],
+         responsive: [{
+           breakpoint: 480,
+           options: {
+             chart: {
+               width: 200
+             },
+
+           }
+         }]
+         };
+
+         var chart = new ApexCharts(document.querySelector("#pie1"), options);
+         chart.render();
+
+ </script>
+
+
+<!-- Pie chart 2 -->
+ <script>
+
+  var options = {
+    colors : ['#8e99b2', '#a97c52'],
+
+    title: {
+     text: "Female Pass/Fail",
+     align: 'left',
+     margin :10,
+     offsetX: 55,
+     offsetY: 0,
+     floating: false,
+     style: {
+       fontSize:  '14px',
+       fontWeight:  'bold',
+       color:  '#263238'
+     },
+ },
+            series: [{{female_data.0}}, {{female_data.1}}],
+            chart: {
+            width: 380,
+            type: 'pie',
+
+          },
+          plotOptions: {
+
+        pie: {
+          customScale: 0.9
+        }
+      }
+          ,
+          labels: ['Total Passed', 'Total Failed',],
+          responsive: [{
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+
+            }
+          }]
+          };
+
+          var chart = new ApexCharts(document.querySelector("#pie2"), options);
+          chart.render();
+
+  </script>
+
+
+
+<!-- Bar Chart 1  -->
+  <script>
+
+
+
+    var options = {
+
+      colors : ['#3b5998', '#ee6147'],
+
+   series: [{
+   name: 'Male',
+   data: [{{male_data.0}},{{male_data.1}}]
+ }
+ , {
+   name: 'Female',
+   data: [{{female_data.0}},{{female_data.1}}]
+ }
+
+ ],
+   chart: {
+   type: 'bar',
+   height: 350
+ },
+ plotOptions: {
+   bar: {
+     horizontal: false,
+     columnWidth: '55%',
+     endingShape: 'rounded'
+   },
+ },
+ dataLabels: {
+   enabled: false
+ },
+ stroke: {
+   show: true,
+   width: 2,
+   colors: ['transparent']
+ },
+ xaxis: {
+   categories: ['Pass','Failed'],
+ },
+ yaxis: {
+   title: {
+     text: ' Number of Students '
+   }
+ },
+ fill: {
+   opacity: 1
+ },
+
+ };
+
+ var chart = new ApexCharts(document.querySelector("#bar1"), options);
+ chart.render();
+  </script>
+
+
+  <!-- Bar Chart 2  -->
+    <script>
+
+
+
+      var options = {
+        colors : ['#561FBF', '#766F8C'],
+
+     series: [{
+     name: 'Male',
+     data: [{{male_scores.0}}]
+   }
+   ,
+   {
+   name: 'Female',
+   data: [{{female_scores.0}}]
+   }
+   ,
+   ],
+     chart: {
+     type: 'bar',
+     height: 350
+   },
+   plotOptions: {
+     bar: {
+       horizontal: false,
+       columnWidth: '55%',
+       endingShape: 'rounded'
+     },
+   },
+   dataLabels: {
+     enabled: false
+   },
+   stroke: {
+     show: true,
+     width: 2,
+     colors: ['transparent']
+   },
+   xaxis: {
+     categories: ["Gender"],
+   },
+   yaxis: {
+     title: {
+       text: ' Math Scores '
+     }
+   },
+   fill: {
+     opacity: 1
+   },
+
+   };
+
+   var chart = new ApexCharts(document.querySelector("#bar2"), options);
+   chart.render();
+    </script>
+
+    <!-- Bar Chart 3  -->
+      <script>
+
+
+
+        var options = {
+          colors : ['#1F1D4F', '#AA9FC9'],
+       series: [{
+       name: 'Male',
+       data: [{{male_scores.1}}]
+     }
+     ,
+     {
+     name: 'Female',
+     data: [{{female_scores.1}}]
+     }
+     ,
+     ],
+       chart: {
+       type: 'bar',
+       height: 350
+     },
+     plotOptions: {
+       bar: {
+         horizontal: false,
+         columnWidth: '55%',
+         endingShape: 'rounded'
+       },
+     },
+     dataLabels: {
+       enabled: false
+     },
+     stroke: {
+       show: true,
+       width: 2,
+       colors: ['transparent']
+     },
+     xaxis: {
+       categories: ["Gender"],
+     },
+     yaxis: {
+       title: {
+         text: ' Reading Scores '
+       }
+     },
+     fill: {
+       opacity: 1
+     },
+
+     };
+
+     var chart = new ApexCharts(document.querySelector("#bar3"), options);
+     chart.render();
+      </script>
+
+
+      <!-- Bar Chart 4  -->
+        <script>
+
+
+
+          var options = {
+
+         series: [{
+         name: 'Male',
+         data: [{{male_scores.2}}]
+       }
+       ,
+       {
+       name: 'Female',
+       data: [{{female_scores.2}}]
+       }
+       ,
+       ],
+         chart: {
+         type: 'bar',
+         height: 350
+       },
+       plotOptions: {
+         bar: {
+           horizontal: false,
+           columnWidth: '55%',
+           endingShape: 'rounded'
+         },
+       },
+       dataLabels: {
+         enabled: false
+       },
+       stroke: {
+         show: true,
+         width: 2,
+         colors: ['transparent']
+       },
+       xaxis: {
+         categories: ["Gender"],
+       },
+       yaxis: {
+         title: {
+           text: ' Writing Scores '
+         }
+       },
+       fill: {
+         opacity: 1
+       },
+
+       };
+
+       var chart = new ApexCharts(document.querySelector("#bar4"), options);
+       chart.render();
+        </script>
+
+
+        <!-- Bar Chart 5  -->
+          <script>
+
+               var options = {
+                 title: {
+                  text: "Parents Background Influence on Students Success",
+                  align: 'left',
+                  margin :10,
+                  offsetX: 55,
+                  offsetY: 0,
+                  floating: false,
+                  style: {
+                    fontSize:  '20px',
+                    fontWeight:  'bold',
+                    color:  '#707070'
+                  },
+                },
+
+                 series: [{
+                 data: {{education_level_perc}}
+               }],
+                 chart: {
+                 height: 400,
+                 width: 600,
+                 type: 'bar',
+                 events: {
+                   click: function(chart, w, e) {
+                     // console.log(chart, w, e)
+                   }
+                 }
+               },
+                plotOptions: {
+                 bar: {
+                   columnWidth: '45%',
+                   distributed: true,
+                 }
+               },
+               dataLabels: {
+                 enabled: false
+               },
+               legend: {
+                 show: false
+               },
+               xaxis: {
+                 categories:
+                  {{unique_education|safe}}
+                 ,
+                 title: {
+                   text: 'Parents Educational background'
+                 },
+                 labels: {
+                   style: {
+                     fontSize: '12px'
+                   }
+                 }
+               },
+               yaxis: {
+          title: {
+            text: 'Percentage of passed students'
+          }
+        },
+               };
+
+               var chart = new ApexCharts(document.querySelector("#bar5"), options);
+               chart.render();
+          </script>
+
+
+
+
+      <!-- Bar Chart 6  -->
+        <script>
+
+          var options = {
+
+            title: {
+             text: "Lunch type Influence on Students Success",
+             align: 'left',
+             margin :10,
+             offsetX: 55,
+             offsetY: 0,
+             floating: false,
+             style: {
+               fontSize:  '20px',
+               fontWeight:  'bold',
+               color:  '#707070'
+             },
+           },
+         series: [{
+         name: 'Standard Lunch',
+         data: [{{standard_lunch.0}},{{standard_lunch.1}}]
+       }
+       , {
+         name: 'Reduced Lunch',
+         data: [{{reduced_lunch.0}},{{reduced_lunch.1}}]
+       }
+
+       ],
+         chart: {
+         type: 'bar',
+         height: 400,
+         width: 500,
+       },
+       plotOptions: {
+         bar: {
+           horizontal: false,
+           columnWidth: '55%',
+           endingShape: 'rounded'
+         },
+       },
+       dataLabels: {
+         enabled: false
+       },
+       stroke: {
+         show: true,
+         width: 2,
+         colors: ['transparent']
+       },
+       xaxis: {
+         categories: ['Pass','Failed'],
+         title: {
+           text: ' Lunch Type '
+         }
+       },
+       yaxis: {
+         title: {
+           text: ' Number of Students '
+         }
+       },
+       fill: {
+         opacity: 1
+       },
+
+       };
+
+       var chart = new ApexCharts(document.querySelector("#bar6"), options);
+       chart.render();
+        </script>
+
+    {% endblock %}

@@ -1,0 +1,61 @@
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    </head>
+    <body>
+
+        {% comment %} <!--Register-->
+        <div class="container py-5">
+        	<h1>Register</h1>
+        	<form method="POST">
+        		{% csrf_token %}
+        		{{ register_form|crispy }}
+        		<button class="btn btn-primary" type="submit">Register</button>
+        	</form>
+        	<p class="text-center">If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
+        </div> {% endcomment %}
+
+
+
+
+
+        <!--Login-->
+
+        <div class="container py-5 body">
+        <div class="form">
+        	{% if messages %}
+        	{% for message in messages %}
+          <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+        	<p>{{ message }}</p>
+
+          </div>
+          {% endfor %}
+          {% endif %}
+          <h1>Register</h1>
+          <form method="POST" >
+            {% csrf_token %}
+            {{ register_form|crispy }}
+        	<button class="btn btn-primary" type="submit">Register</button>
+        </form>
+        <p class="text-center">If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
+        </div>
+        </div>
+
+        <script>
+        	setTimeout(function(){
+        	  if ($('#msg').length > 0) {
+        		$('#msg').remove();
+        	  }
+        	}, 2000)
+          </script>
+    </body>
+</html>

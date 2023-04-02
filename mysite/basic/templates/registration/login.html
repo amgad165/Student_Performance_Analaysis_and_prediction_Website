@@ -1,0 +1,58 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style media="screen">
+body{
+background-size: cover;
+  width: 100%;
+font-weight: bolder;
+  margin: 0;
+  max-width: none;
+  margin-top : -30px;
+
+  background-image: url(https://img.freepik.com/free-vector/set-graduation-students_1262-19896.jpg?t=st=1656505893~exp=1656506493~hmac=6a339364b02c5e5c07f599b60dbb8da7fe26ba001a315b5f1b42b422cc0e2938&w=996) ;
+  height: 50vh;
+
+}
+  #img1{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.form-group>input {flex: 0 1 100px;}
+</style>
+  </head>
+  <body>
+    <div class="container py-1 body">
+    <div class="form">
+      <img id="img1" src="{%  static 'images/img1.jpg'  %}" alt="image" height="300" width="500 ">
+
+      <form method="POST">
+
+        {% csrf_token %}
+        {{ login_form|crispy }}
+        <button class="btn btn-primary" type="submit">Login</button>
+   <p class="message">Not registered? <a href="{% url 'register' %}">Create an account</a></p>
+           <a href="{% url 'password_reset' %} ">Forgot Password</a>
+      </form>
+    </div>
+    </div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  var element = document.getElementById("div_id_username");
+  element.classList.add("col-xs-4");
+} );
+</script>
+  </body>
+</html>
